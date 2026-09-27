@@ -1,0 +1,26 @@
+# Wider spectrum stress case: 32 bands (1.0..4.1 GHz), more emitters, longer episodes.
+scenario:
+  name: wideband_32
+  description: 32 bands, 14 random emitters per seed, SNR-dependent detection.
+  source: synthetic
+  n_bands: 32
+  f_start_ghz: 1.0
+  band_spacing_ghz: 0.1
+  episode_length: 512
+  random_emitters:
+    static: 2
+    periodic: 5
+    intermittent: 4
+    agile: 3
+receiver:
+  detection_model: snr
+  pd: 0.9
+  pfa: 0.05
+ppo:
+  total_timesteps: 1000000
+  n_steps: 2048
+  net_arch: [256, 256]
+seeds:
+  train: [1, 200]
+  validation: [501, 520]
+  test: [1001, 1100]

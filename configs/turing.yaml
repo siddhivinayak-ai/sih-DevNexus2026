@@ -1,0 +1,23 @@
+# Mode B: ground truth built from Turing Synthetic Radar Dataset pulse trains (stare mode).
+# Requires .h5 files under data/turing/<mode>/<split>_<mode>/ (or SMARTSCAN_TURING_DIR).
+# Each scenario seed selects one pulse-train file; its PDWs are binned into
+# episode_length timesteps x n_bands centre-frequency bins.
+scenario:
+  name: turing_16band
+  description: Turing stare-mode pulse trains binned onto 16 bands.
+  source: turing
+  n_bands: 16
+  episode_length: 256
+  turing:
+    local_dir: data/turing
+    mode: stare
+    split: train
+    max_pulses: 200000
+receiver:
+  detection_model: fixed
+  pd: 0.9
+  pfa: 0.05
+seeds:
+  train: [0, 99]
+  validation: [100, 119]
+  test: [1000, 1099]

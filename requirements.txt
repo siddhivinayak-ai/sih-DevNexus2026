@@ -1,6 +1,15 @@
-streamlit
-numpy
-pandas
-datasets
-h5py
-plotly
+# CPU-only PyTorch wheels (keeps installs small, e.g. on Streamlit Community Cloud)
+--extra-index-url https://download.pytorch.org/whl/cpu
+streamlit>=1.40
+numpy>=1.26
+pandas>=2.0
+plotly>=5.20
+pyyaml>=6.0
+h5py>=3.10
+huggingface_hub>=0.24
+gymnasium>=1.0
+stable-baselines3>=2.3
+torch>=2.2
+tensorboard>=2.15
+scipy>=1.11
+pytest>=8.0

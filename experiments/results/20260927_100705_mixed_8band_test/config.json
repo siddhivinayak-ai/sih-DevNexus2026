@@ -1,0 +1,117 @@
+{
+  "scenario": {
+    "name": "mixed_8band",
+    "description": "Random emitter mix per seed (static, periodic, intermittent, frequency-agile) on 8 bands.",
+    "source": "synthetic",
+    "n_bands": 8,
+    "f_start_ghz": 1.0,
+    "band_spacing_ghz": 0.1,
+    "episode_length": 256,
+    "warmup_steps": 0,
+    "emitters": [],
+    "random_emitters": {
+      "static": 1,
+      "periodic": 2,
+      "intermittent": 1,
+      "agile": 1
+    },
+    "ranges": {
+      "snr_db": [
+        6.0,
+        15.0
+      ],
+      "period": [
+        6,
+        24
+      ],
+      "duty": [
+        0.15,
+        0.35
+      ],
+      "p_on": [
+        0.02,
+        0.06
+      ],
+      "p_off": [
+        0.15,
+        0.4
+      ],
+      "hop_interval": [
+        4,
+        12
+      ],
+      "hop_set_size": [
+        3,
+        5
+      ]
+    },
+    "turing": {
+      "local_dir": "data/turing",
+      "mode": "stare",
+      "split": "train",
+      "max_pulses": 200000,
+      "cf_min": null,
+      "cf_max": null
+    }
+  },
+  "receiver": {
+    "detection_model": "fixed",
+    "pd": 0.9,
+    "pfa": 0.05,
+    "instantaneous_bands": 1,
+    "dwell_steps": 1,
+    "retune_steps": 0,
+    "amplitude_sigma_db": 1.0
+  },
+  "reward": {
+    "detection": 0.1,
+    "new_intercept": 1.0,
+    "false_alarm": 0.2,
+    "miss": 0.0,
+    "switch_cost": 0.0,
+    "latency": 0.1,
+    "revisit": 0.05,
+    "revisit_window": 2
+  },
+  "observation": {
+    "staleness_horizon": null,
+    "ema_alpha": 0.3,
+    "belief_p_on": 0.05,
+    "belief_p_off": 0.1,
+    "belief_prior": 0.2,
+    "max_period": 64
+  },
+  "ppo": {
+    "total_timesteps": 300000,
+    "learning_rate": 0.0003,
+    "gamma": 0.95,
+    "gae_lambda": 0.95,
+    "n_steps": 1024,
+    "batch_size": 256,
+    "n_epochs": 10,
+    "ent_coef": 0.01,
+    "clip_range": 0.2,
+    "net_arch": [
+      128,
+      128
+    ],
+    "n_envs": 8,
+    "seed": 42,
+    "checkpoint_freq": 50000,
+    "eval_freq": 25000
+  },
+  "seeds": {
+    "train": [
+      1,
+      100
+    ],
+    "validation": [
+      501,
+      520
+    ],
+    "test": [
+      1001,
+      1100
+    ]
+  }
+}

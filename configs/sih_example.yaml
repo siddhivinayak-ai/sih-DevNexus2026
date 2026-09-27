@@ -1,0 +1,26 @@
+# The SIH problem-statement example: F1..F8 = 1.0..1.7 GHz, single-band receiver.
+# Emitter layout is fixed; phases and hop offsets vary with the scenario seed.
+scenario:
+  name: sih_example
+  description: "SIH example: periodic F3 (T=5), short-burst threat on F6, agile F2->F6->F4->F7, static F1."
+  source: synthetic
+  n_bands: 8
+  f_start_ghz: 1.0
+  band_spacing_ghz: 0.1
+  episode_length: 256
+  emitters:
+    - {kind: periodic, name: "A periodic F3", band: 2, period: 5, duty: 0.4, snr_db: 12.0}
+    - {kind: intermittent, name: "B threat F6", band: 5, p_on: 0.03, p_off: 0.35, snr_db: 10.0}
+    - {kind: agile, name: "C agile", hop_bands: [1, 5, 3, 6], hop_interval: 8, snr_db: 12.0}
+    - {kind: static, name: "D static F1", band: 0, snr_db: 15.0}
+  random_emitters: {}
+receiver:
+  detection_model: fixed
+  pd: 0.9
+  pfa: 0.05
+ppo:
+  total_timesteps: 300000
+seeds:
+  train: [1, 100]
+  validation: [501, 520]
+  test: [1001, 1100]

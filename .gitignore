@@ -1,5 +1,20 @@
 # Streamlit
 .streamlit/secrets.toml
 
-# Environment variables
+# Environment variables / credentials
 .env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Large / regenerable training artefacts (best/final model, config, metadata, progress are kept)
+models/*/checkpoints/
+models/*/tb/
+models/*/monitor/
+models/*/progress.json.tmp
+
+# Turing dataset files (download locally, see docs/10_turing_dataset.md)
+data/turing/

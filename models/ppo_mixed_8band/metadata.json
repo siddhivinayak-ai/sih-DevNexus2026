@@ -1,0 +1,31 @@
+{
+  "scenario": "mixed_8band",
+  "n_bands": 8,
+  "obs_dim": 91,
+  "timesteps_trained": 303104,
+  "timesteps_requested": 300000,
+  "stopped_early": false,
+  "episodes": 1184,
+  "wall_time_s": 398.6,
+  "train_seeds": [
+    1,
+    100
+  ],
+  "validation_seeds": [
+    501,
+    520
+  ],
+  "test_seeds": [
+    1001,
+    1100
+  ],
+  "best_validation_reward": 42.8345,
+  "selection": "best mean episode reward on validation seeds (deterministic policy)",
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "torch": "2.14.0+cpu",
+    "gymnasium": "1.3.0",
+    "stable_baselines3": "2.9.0"
+  }
+}
