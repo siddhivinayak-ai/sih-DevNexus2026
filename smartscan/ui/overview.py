@@ -51,10 +51,12 @@ def render() -> None:
                 "to inspect next from receiver observations and feedback."
             )
             st.code(
-                "Spectrum   F1  F2  F3  F4  F5  F6  F7  F8        (receiver sees ONE band per dwell)\n"
-                "Open loop  F1 → F2 → F3 → F4 → F5 → F6 → F7 → F8 → F1 ...   fixed, ignores observations\n"
-                "Threat     short transmission on F6 while the sweep is at F2 → may end before F6 is visited\n"
-                "SmartScan  observation → state/belief → policy π(a|s) → next band → observe → reward → learn",
+                "Spectrum   F1  F2  F3  F4  F5  F6  F7  F8   (ONE band per dwell)\n"
+                "Open loop  F1 → F2 → F3 → ... → F8 → F1     fixed, ignores observations\n"
+                "Threat     short burst on F6 while sweep is at F2\n"
+                "           → may be over before F6 is visited\n"
+                "SmartScan  observation → state/belief → π(a|s) → next band\n"
+                "           → observe → reward → learn",
                 language=None,
             )
         with panel("Closed-loop architecture"):

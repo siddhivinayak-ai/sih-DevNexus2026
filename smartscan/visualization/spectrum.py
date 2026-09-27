@@ -75,7 +75,8 @@ def spectrum_activity_map(scenario, trace: pd.DataFrame | None = None, t_max: in
         outcome_markers(fig, tr, "action", "t_start", size=7)
     labels = _band_axis_labels(scenario)
     fig.update_xaxes(title_text="Frequency band", range=[-0.5, N - 0.5], showgrid=False, **band_ticks(N, labels))
-    fig.update_yaxes(title_text="Time (steps)", autorange="reversed", showgrid=False)
+    # full-episode time axis: the map fills downward like a waterfall as the episode runs
+    fig.update_yaxes(title_text="Time (steps)", range=[T - 0.5, -0.5], showgrid=False)
     fig.update_layout(legend=dict(orientation="h", y=-0.12, x=0, yanchor="top"), margin=dict(b=70))
     if scenario.warmup_steps and t_max > scenario.warmup_steps:
         fig.add_hline(y=scenario.warmup_steps - 0.5, line=dict(color="#8c8c8c", dash="dash", width=1),
